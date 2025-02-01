@@ -41,13 +41,15 @@
 \usepackage{xcolor}
 
 \usepackage{pgfplots}
+\usepackage{algorithm}
+\usepackage{listings, listings-rust}
 
 \begin{document}
 
 \pagenumbering{arabic}
 
-\title{Rust}
-\subtitle{Aspetti di Safety}
+\title{Safety e Security del Codice}
+\subtitle{Incidenti e Soluzioni}
 %
 % You need the command \numberofauthors to handle the 'placement
 % and alignment' of the authors beneath the title.
@@ -115,8 +117,8 @@ Francesco Bernini\\
 \input{pages/morrisworm.tex}
 \subsection{Ariane 5}
 \input{pages/ariane5.tex}
-\subsection{Toyota}
-\input{pages/toyota.tex}
+\subsection{Therac-25}
+\input{pages/therac.tex}
 
 %\subsection{Ambito safety critical}
 
@@ -127,7 +129,7 @@ Francesco Bernini\\
 \input{pages/approccirisolutivi.tex}
 \subsection{Analisi Statica}
 \input{pages/staticanalysis.tex}
-\subsection{Sottoinsieme linguaggi} % MISRA
+\subsection{Sottoinsiemi e sovrainsiemi di linguaggi} % MISRA
 \input{pages/languagesubsets.tex}
 \subsection{Rust}
 \input{pages/rust.tex}

@@ -1,0 +1,27 @@
+Nonostante il giovane linguaggio di programmazione Rust abbia convinto persino gli sviluppatori del kernel Linux \cite{RustInKernel}, ci sono state negli anni diverse proposte riguardo alla creazione di sotto o sovra insiemi safe di linguaggi di programmazione non memory-safe come C e C++.
+
+\subsubsection{MISRA}
+MISRA (Motor Industry Software Reliability Association) è un'organizzazione internazionale nata nel 1994 con l'obiettivo di promuovere lo sviluppo di software sicuro e affidabile, inizialmente nel settore automobilistico. Oggi, le sue linee guida e standard sono ampiamente adottati in vari settori industriali, tra cui aerospaziale, difesa, medicale e telecomunicazioni. L'organizzazione opera attraverso un processo collaborativo, coinvolgendo esperti del settore, aziende e istituzioni per sviluppare e aggiornare i suoi standard.
+
+Questi standard forniscono regole e direttive per la scrittura di codice C e C++ robusto e sicuro. Infatti, essi sono progettati per ridurre il rischio di errori nel software, migliorandone la qualità e la manutenibilità attraverso il divieto di utilizzare funzionalità del linguaggio considerate pericolose nonostante siano permesse dallo standard. Le linee guida MISRA sono particolarmente utili in contesti in cui il software è soggetto a normative severe, come nei sistemi embedded o in applicazioni safety-critical \cite{MISRA}. 
+
+Ad esempio, un programma che utilizza una variabile non precedentemente inizializzata infrange il regolamento MISRA nonostante sia contemplato dallo standard C/C++.
+
+\subsubsection{C-rusted}
+C-rusted propone un approccio alternativo all'abbandono del linguaggio C verso linguaggi che offrono garanzie maggiori in termini di safety. L'idea è quella di utilizzare i concetti che si sono rivelati veramente utili in altri linguaggi, come l'\textbf{ownership} di Rust, e implementarli in una versione safe, secure e energy-efficient di C.
+
+Questo avviene tramite annotazioni: il codice di base sarà comunque ISO C per mantenere la compatibilità con quanto già esistente (punto di forza caratteristico del C) ma il programmatore dovrà aggiungere annotazioni tramite macro (ignorate quindi dal compilatore). Esse verranno sfruttate da un analizzatore statico ad hoc che, grazie al contesto aggiunto, da esse riuscirà a garantire importanti proprietà sul codice.
+
+Per come è stato progettato C-rusted, anche l'assenza di annotazioni è informativa: in ISO C è possibile che un puntatore qualsiasi sia \texttt{null} mentre per ottenere questo comportamento in questa versione più sicura sarà obbligatorio specificarlo tramite annotazione appunto \cite{bagnara2023crustedadvantagesrustc}.
+
+I maggiori benefici che si hanno nel caso si scelga questa strada per scrivere codice sicuro sono:
+\begin{itemize}
+    \item non è necessario modificare codice già esistente se non tramite annotazioni. 
+    \item non è necessario addestrare programmatori su un intero linguaggio di programmazione nuovo, ma solamente sul sistema di annotazioni.
+    \item i compilatori C esistenti funzionano anche per C-rusted.
+    \item i tools già esistenti per C funzionano anche per C-rusted.
+\end{itemize}
+
+
+\subsubsection{Safe C++}
+Safe C++, come C-rusted, propone un'alternativa all'abbandono di un altrettanto diffuso linguaggio di programmazione a basso livello: il C++. Lo fa attraverso un approccio simile ma non basato su macro, ovvero quello di \textit{estendere un sottoinsieme safe} del linguaggio con meccanismi ad-hoc per implementare idee vincenti di memory safety senza l'overhead della garbage collection (come l'ownership di Rust). Queste estensioni del linguaggio hanno richiesto l'implementazione di un compilatore C++ (Circle \cite{Circle}) che supportasse i nuovi elementi della sintassi e che effettuasse i nuovi controlli statici richiesti durante la compilazione. Inoltre, si è resa necessaria una riscrittura completa (realizzata solo in parte) della libreria standard del C++ perché ovviamente basata su codice unsafe: Safe C++ considera unsafe tutto ciò che può portare ad \textit{undefined behavior}, come l'uso dei puntatori nel suo complesso o l'utilizzo di variabili prima della loro definizione \cite{SAFEC++}.
