@@ -34,7 +34,7 @@ fn main() {
     let len = calcola_lunghezza(&s1);
     // Prestito di s1 in modo immutabile
 
-    println!("La lunghezza di '{}' e' {}.", s1, len);
+    println!("La len di '{}' e' {}.", s1, len);
 }
         
 fn calcola_lunghezza(s: &String) -> usize {
@@ -110,4 +110,4 @@ fn longest<'a>(x: &'a str, y: &'a str) -> &'a str{
 
 In questo esempio, la funzione \texttt{longest} restituisce il riferimento alla stringa più lunga. Il ciclo di vita \texttt{'a} garantisce che i riferimenti \texttt{x} e \texttt{y} siano validi per lo stesso periodo.
 
-Questi concetti rendono Rust particolarmente adatto per lo sviluppo di sistemi sicuri e applicazioni ad alte prestazioni secondo le guidelines pubblicate già nel 2023 dalla CISA (Cybersecurity \& Infrastructure Security Agency), agenzia di rilevanza internazionale facente parte del dipartimento di Sicurezza Interna degli Stati Uniti \cite{CISA}.
+Questi concetti rendono \texttt{Rust} particolarmente adatto per lo sviluppo di sistemi sicuri e applicazioni ad alte prestazioni secondo le guidelines pubblicate già nel 2023 dalla CISA (Cybersecurity \& Infrastructure Security Agency), agenzia di rilevanza internazionale facente parte del dipartimento di Sicurezza Interna degli Stati Uniti \cite{CISA}.
