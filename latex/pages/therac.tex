@@ -1,6 +1,6 @@
 Un altro esempio drammatico di fallimento software è il caso del Therac-25, un acceleratore lineare per la radioterapia sviluppato dalla Atomic Energy of Canada Limited (AECL) e utilizzato tra gli anni '80 e '90. Tra il 1985 e il 1987, il dispositivo fu responsabile di sei incidenti gravi, nei quali i pazienti furono esposti a dosi centinaia di volte superiori al valore previsto, portando a ustioni gravi e, in alcuni casi, alla morte.
 
-Il problema principale risiedeva in un bug nel software di controllo, scritto in assembly per il sistema PDP-11. Questo codice, derivato da versioni precedenti dei Therac-6 e Therac-20, non era stato adeguatamente testato per le modifiche apportate nel Therac-25.
+Il problema principale risiedeva in un bug nel software di controllo, scritto in assembly per il sistema PDP-11. \\Questo codice, derivato da versioni precedenti dei Therac-6 e Therac-20, non era stato adeguatamente testato per le modifiche apportate nel Therac-25.
 
 Uno dei bug più critici riguardava la gestione della concorrenza. Il software utilizzava variabili globali per tracciare lo stato del macchinario, ma senza un adeguato meccanismo di sincronizzazione. Questo permetteva a un operatore di inserire rapidamente comandi sulla console, modificando lo stato del sistema prima che i controlli di sicurezza venissero completati.
 
@@ -8,4 +8,4 @@ Ad esempio, un operatore poteva selezionare una modalità di trattamento e corre
 
 Inoltre, il manuale fornito insieme alla macchina non conteneva informazioni riguardo i codici degli errori che essa a volte mostrava e questo ha portato gli operatori ad ignorare tali messaggi.
 
-L'incidente del Therac-25 portò a una maggiore consapevolezza sull'importanza di ingegneria del software sicura, in particolare per i sistemi critici. Da allora, sono stati introdotti standard più rigorosi per la sicurezza dei software medicali, tra cui l’adozione di ridondanze hardware, metodi formali di verifica e pratiche di programmazione sicura \cite{Leveson1993}.
+Questo incidente mostrò l'importanza dell'informare l'utente finale sulle procedure da seguire in caso di errori e di rendere la sicurezza parte fondamentale dei processi previsti dall'ingegneria del software, in modo da avere sistemi sicuri ``by design'' \cite{Leveson1993}.

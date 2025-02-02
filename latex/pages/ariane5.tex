@@ -1,13 +1,13 @@
-Il fallimento del volo inaugurale del razzo Ariane 5 il 4 giugno 1996 è uno degli esempi più noti di disastro informatico causato da un errore software. Dopo soli 37 secondi dal lancio, il razzo si disintegrò in volo, provocando una perdita economica di circa 370 milioni di dollari.
+Il fallimento del volo inaugurale del razzo Ariane 5, avvenuto il 4 giugno 1996, è uno degli esempi più noti di disastro informatico causato da un errore software. Dopo soli 37 secondi dal lancio, il razzo si disintegrò in volo, provocando una perdita economica di circa 370 milioni di dollari.
 
-La causa del fallimento fu un errore nella gestione della conversione di un numero in virgola mobile in un numero intero a 16 bit all'interno del sistema di guida inerziale del razzo, nonostante fosse scritto in un linguaggio fortemente tipizzato come Ada.
-Il codice riutilizzava parti di quello impiegato per Ariane 4, dove le condizioni di volo erano diverse e l'errore non si verificava. Tuttavia, il nuovo razzo Ariane 5 aveva una velocità significativamente maggiore durante la fase iniziale del volo, il che portò alla generazione di un valore superiore a quello rappresentabile nel tipo di dato utilizzato. Il tentativo di conversione generò un overflow, causando il crash del sistema di guida \cite{Lions1996}.
+La causa del fallimento fu un errore nella gestione della conversione di un numero in virgola mobile in un numero intero a 16 bit all'interno del sistema di guida inerziale del razzo, nonostante fosse scritto in un linguaggio fortemente tipizzato come \texttt{Ada}.
+Il codice riutilizzava parti di quello impiegato per Ariane 4, dove le condizioni di volo erano diverse e l'errore non si verificava. Tuttavia, il nuovo razzo Ariane 5 aveva una velocità significativamente maggiore durante la fase iniziale del volo, il che portò alla generazione di un valore superiore a quello rappresentabile dal tipo di dato utilizzato. Il tentativo di conversione generò un overflow, causando il crash del sistema di guida \cite{Lions1996}.
 
 L'incidente di Ariane 5 evidenzia diversi problemi legati alla sicurezza software nei sistemi critici:
 \begin{enumerate}
     \item \textbf{Riutilizzo del codice senza adeguata validazione}: il software era stato progettato per Ariane 4 e non era stato testato adeguatamente per le nuove condizioni di Ariane 5.
-    \item \textbf{Gestione degli errori inadeguata}: il crash di un sottosistema critico portò alla perdita del razzo, evidenziando la necessità di strategie di recupero più robuste.
-    \item \textbf{Problemi di conversione dei tipi di dati}: errori nella gestione della memoria e nella conversione numerica possono avere conseguenze catastrofiche nei sistemi real-time.
+    \item \textbf{Gestione degli errori inadeguata}: una segnalazione di errore di un sottosistema critico non correttamente gestita portò alla perdita del razzo.
+    \item \textbf{Problemi di conversione dei tipi di dati}: errori nella conversione numerica possono avere conseguenze catastrofiche nei sistemi real-time.
 \end{enumerate}
 
-Questo incidente ha portato a una maggiore attenzione nella validazione e verifica dei software nei sistemi avionici, con l'adozione di standard più rigorosi per lo sviluppo di software safety-critical, come DO-178C. Inoltre, ha rafforzato l'importanza dell'analisi statica per rilevare potenziali vulnerabilità legate alla gestione dei tipi di dati e alla robustezza del codice software nei sistemi critici \cite{RTCA2011}.
+Questo incidente ha portato a una maggiore attenzione nella validazione e verifica dei software nei sistemi avionici, con l'adozione di standard più rigorosi per lo sviluppo di software safety-critical, come DO-178C. Inoltre, ha rafforzato l'importanza dell'analisi statica per rilevare potenziali vulnerabilità legate alla gestione dei tipi di dati \cite{RTCA2011}.

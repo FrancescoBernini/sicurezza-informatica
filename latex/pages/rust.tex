@@ -1,8 +1,8 @@
-Rust è un linguaggio di programmazione moderno progettato per garantire sicurezza e prestazioni senza l'uso di un garbage collector. La gestione della memoria in Rust si basa su tre concetti fondamentali: \textbf{ownership}, \textbf{borrowing} e \textbf{lifetimes}. Questi meccanismi permettono di prevenire errori comuni come use-after-free, memory leaks e data races in ambienti concorrenti.
+\texttt{Rust} è un linguaggio di programmazione moderno progettato per garantire sicurezza e prestazioni senza l'uso di un garbage collector. La gestione della memoria in Rust si basa su tre concetti fondamentali: \textbf{ownership}, \textbf{borrowing} e \textbf{lifetimes}. Questi meccanismi permettono di prevenire errori comuni come \textit{use-after-free}, \textit{memory leaks} e \textit{data races} in ambienti concorrenti.
 
 \subsubsection{Ownership}
 
-L'\textbf{ownership} è il principio cardine della gestione della memoria in Rust. Ogni valore in Rust ha un proprietario unico e quando il proprietario esce dallo scope, la memoria viene automaticamente deallocata.
+L'\textbf{ownership} è il principio cardine della gestione della memoria in \texttt{Rust}. Ogni valore ha un proprietario unico (Algoritmo~\ref{lst:ownership}) e quando il proprietario esce dallo scope, la memoria viene automaticamente deallocata.
 
 \begin{algorithm}[ht]
     \caption{Esempio dimostrativo dell'ownership}
@@ -21,9 +21,9 @@ fn main() {
 
 \subsubsection{Borrowing}
 
-Poiché l'ownership di un valore non può essere trasferita automaticamente, Rust consente di prendere in prestito (\textbf{borrowing}) i valori attraverso le references (\texttt{\&}) consentendo di accedere ai dati senza cambiarne il proprietario.
+Poiché l'ownership di un valore non può essere trasferita automaticamente, \texttt{Rust} consente di prendere in prestito \\(\textbf{borrowing}) i valori attraverso le \textit{references} (\texttt{\&}) consentendo di accedere ai dati senza cambiarne il proprietario.
 
-Rust distingue tra borrowing immutabile e mutabile: non si possono avere più riferimenti mutabili simultanei e non ci possono essere riferimenti mutabili se ci sono già riferimenti immutabili a una stessa variabile.
+\texttt{Rust} distingue tra borrowing \textbf{immutabile} (Algoritmo~\ref{lst:borrowing_immutabile}) e \textbf{mutabile} (Algoritmo~\ref{lst:borrowing_mutabile}): non si possono avere più riferimenti mutabili simultanei e non ci possono essere riferimenti mutabili se ci sono già riferimenti immutabili a una stessa variabile (Algoritmo~\ref{lst:borrowing_mutabile_e_immutabile}).
 
 \begin{algorithm}[ht]
     \caption{Esempio di borrowing immutabile}
@@ -31,7 +31,8 @@ Rust distingue tra borrowing immutabile e mutabile: non si possono avere più ri
     \begin{lstlisting}[language=Rust, style=colouredRust]
 fn main() {
     let s1 = String::from("Ciao");
-    let len = calcola_lunghezza(&s1);  // Presta s1 in modo immutabile
+    let len = calcola_lunghezza(&s1);
+    // Prestito di s1 in modo immutabile
 
     println!("La lunghezza di '{}' e' {}.", s1, len);
 }
@@ -42,7 +43,7 @@ fn calcola_lunghezza(s: &String) -> usize {
 \end{lstlisting}
 \end{algorithm}
 
-In questo esempio, s1 viene prestata in modo immutabile alla funzione calcola\_lunghezza. Dopo la chiamata, s1 rimane valida e può essere utilizzata.
+In questo esempio, \texttt{s1} viene prestata in modo immutabile alla funzione \texttt{calcola\_lunghezza}. Dopo la chiamata, \texttt{s1} rimane valida e può essere utilizzata.
 
 \begin{algorithm}[ht]
     \caption{Esempio di borrowing mutabile}
@@ -50,8 +51,9 @@ In questo esempio, s1 viene prestata in modo immutabile alla funzione calcola\_l
     \begin{lstlisting}[language=Rust, style=colouredRust]
 fn main() {
     let mut s1 = String::from("Ciao");
-    modifica_stringa(&mut s1);  // Presta s1 in modo mutabile
-        
+    modifica_stringa(&mut s1);  
+    // Prestito di s1 in modo mutabile
+
     println!("{}", s1);  // Stampa "Ciao, Mondo!"
 }
         
@@ -61,8 +63,8 @@ fn modifica_stringa(s: &mut String) {
 \end{lstlisting}
 \end{algorithm}
 
-In questo esempio, s1 viene prestata in modo mutabile alla funzione modifica\_stringa, che modifica la stringa aggiungendo ``, Mondo!''.
-
+Nel seguente esempio invece, \texttt{s1} viene prestata in modo mutabile alla funzione \texttt{modifica\_stringa}, che modifica la stringa aggiungendo ``, Mondo!''.
+~\\
 \begin{algorithm}[ht]
     \caption{Esempio di borrowing mutabile quando già immutabile}
     \label{lst:borrowing_mutabile_e_immutabile}
@@ -72,7 +74,7 @@ fn main() {
         
     let r1 = &s;  // Prestito immutabile
     let r2 = &s;  // Prestito immutabile
-    // let r3 = &mut s;  // Questo causerebbe un errore di compilazione
+    // let r3 = &mut s;  // Errore!
         
     println!("{}, {}", r1, r2);
 }
@@ -82,21 +84,21 @@ fn main() {
 
 \subsubsection{Lifetimes}
 
-I lifetimes garantiscono a compile-time che le references siano sempre valide e non puntino a memoria deallocata.
+I \textbf{\textit{lifetimes}} garantiscono a compile-time che le \textit{references} siano sempre valide e non puntino a memoria deallocata.
 
 \begin{algorithm}[ht]
     \caption{Esempio gestione lifetime}
     \label{lst:lifetimes}
 \begin{lstlisting}[language=Rust, style=colouredRust]
 fn main() {
-    let string1 = String::from("lunga stringa");
-    let string2 = "xyz";
+    let str1 = String::from("lunga stringa");
+    let str2 = "xyz";
     
-    let risultato = longest(string1.as_str(), string2);
-    println!("La stringa piu' lunga e' {}", risultato);
+    let ris = longest(str1.as_str(), str2);
+    println!("La stringa piu' lunga e' {}", ris);
 }
     
-fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
+fn longest<'a>(x: &'a str, y: &'a str) -> &'a str{
     if x.len() > y.len() {
         x
     } else {
@@ -106,6 +108,6 @@ fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
 \end{lstlisting}
 \end{algorithm}
 
-In questo esempio, la funzione longest restituisce il riferimento alla stringa più lunga. Il ciclo di vita 'a garantisce che i riferimenti x e y siano validi per lo stesso periodo.
+In questo esempio, la funzione \texttt{longest} restituisce il riferimento alla stringa più lunga. Il ciclo di vita \texttt{'a} garantisce che i riferimenti \texttt{x} e \texttt{y} siano validi per lo stesso periodo.
 
 Questi concetti rendono Rust particolarmente adatto per lo sviluppo di sistemi sicuri e applicazioni ad alte prestazioni secondo le guidelines pubblicate già nel 2023 dalla CISA (Cybersecurity \& Infrastructure Security Agency), agenzia di rilevanza internazionale facente parte del dipartimento di Sicurezza Interna degli Stati Uniti \cite{CISA}.

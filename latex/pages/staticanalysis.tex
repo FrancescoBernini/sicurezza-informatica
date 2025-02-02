@@ -1,4 +1,4 @@
-Una branca dell'informatica che sta acquisendo sempre più rilevanza è quella che riguarda l'analisi dei programmi: conoscere certe proprietà e comportamenti di un programma prima che venga eseguito (\textbf{analisi statica}) o durante la sua esecuzione (analisi dinamica) può mettere in condizione di poter fornire garanzie circa il suo consumo di risorse, la sua correttezza, la sua sicurezza o la sua l'efficienza.
+Una branca dell'informatica che sta acquisendo sempre più rilevanza è quella che riguarda l'analisi dei programmi: \\conoscere certe proprietà e comportamenti di un programma prima che venga eseguito (\textbf{analisi statica}) o durante la sua esecuzione (analisi dinamica) può mettere in condizione di poter fornire garanzie circa il suo consumo di risorse, la sua correttezza, la sua sicurezza o la sua l'efficienza.
 Queste garanzie, in alcuni ambiti critici, possono risultare imprescindibili ma riuscire a dimostrare queste proprietà non è un'attività banale a causa delle limitazioni teoriche su cui di basa l'informatica stessa.
 
 Uno dei più grandi limiti posti dalle fondamentali intuizioni di Alan Turing riguardo l'analisi dei programmi si evidenzia nell'\textit{halting problem} \cite{Turing1936}: il quesito ``è sempre possibile, descritto un programma e un determinato input, stabilire se il programma in questione termina o continua la sua esecuzione all'infinito?'' è \textit{non decidibile}.
@@ -27,7 +27,10 @@ Tuttavia, la maggior parte delle tecniche che si concentrano sull'analisi a \tex
 In certi ambiti non critici questo approccio può risultare sufficiente ma, dove tale proprietà è di cruciale importanza, non è possibile lasciare spazio ad incertezze.
 Perciò, la branca della verifica del software che sembra più adatta agli ambiti critici risulta essere l'analisi statica, approccio speculare rispetto a quello appena visto, che riesce ad abbassare il livello di incertezza sotto le più stringenti specifiche tramite ``\textit{approssimazione}''.
 
-L'\textbf{Interpretazione Astratta} \cite{AbsIntNutshell} è un metodo formale dell'analisi statica che consiste nel considerare un sovrainsieme di tutti i possibili flussi di esecuzione di un programma (detto \textit{semantica astratta}) in modo che, se una proprietà risulta verificata per esso, lo sarà sicuramente anche per l'interezza della semantica concreta Figura~\ref{fig:semantica_astratta}.
+\newpage
+
+\subsubsection{Interpretazione Astratta}
+L'\textbf{Interpretazione Astratta} \cite{AbsIntNutshell} è un metodo formale dell'\\analisi statica che consiste nel considerare un sovrainsieme di tutti i possibili flussi di esecuzione di un programma (detto \textit{semantica astratta}) in modo che, se una proprietà risulta verificata per esso, lo sarà sicuramente anche per l'interezza della semantica concreta Figura~\ref{fig:semantica_astratta}.
 
 \begin{figure}[ht]
     \centering
@@ -37,6 +40,6 @@ L'\textbf{Interpretazione Astratta} \cite{AbsIntNutshell} è un metodo formale d
 \end{figure}
 
 I due rischi principali della definizione della semantica astratta risiedono nel processo di approssimazione.
-Infatti, è possibile infrangere la proprietà di \textit{soundness} effettuando un'approssimazione eccessivamente restrittiva o, all'opposto, avere falsi positivi durante l'analisi a causa di un'approssimazione troppo ampia che interseca la zona di errore nonostante il programma non possa in alcun modo raggiungere quello stato (falso positivo).
+Infatti, è possibile infrangere la proprietà di \textit{soundness} effettuando \\un'approssimazione eccessivamente restrittiva o, all'opposto, avere falsi positivi durante l'analisi a causa di un'\\approssimazione troppo ampia che interseca la zona di errore nonostante il programma non possa in alcun modo raggiungere quello stato (falso positivo).
 
 Nonostante le limitazioni, questo approccio risulta essere effettivamente utilizzato, ad esempio  attraverso l'analizzatore statico Astrée \cite{AbsIntProfile}, da aziende come Airbus, Bosch, ESA ed altri per rispettare gli standard di sicurezza come il sopracitato DO-178C \cite{AbsIntSuccess}.
